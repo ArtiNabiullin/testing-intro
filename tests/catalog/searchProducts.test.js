@@ -29,6 +29,6 @@ describe("searchProducts", () => {
     expect(getIds(" ")).toEqual([1, 2, 3, 4, 5, 6]);
   });
   test("'\\t\\n' возвращает товары с ID [1, 2, 3, 4, 5, 6]", () => {
-    expect(getIds("\\t\\n")).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(getIds("\t\n")).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
