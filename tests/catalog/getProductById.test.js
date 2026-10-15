@@ -17,16 +17,16 @@ describe("getProductById", () => {
   test("ID 999 возвращает null", () => {
     expect(getProductById(products, 0)).toEqual(null);
   });
-  // test("ID -1 возвращает null", () => {
-  //   expect(getProductById()).toEqual();
-  // });
-  // test("строковый ID '1' возвращает null", () => {
-  //   expect(getProductById()).toEqual();
-  // });
-  // test("ID undefined возвращает null", () => {
-  //   expect(getProductById()).toEqual();
-  // });
-  // test("ID NaN возвращает null", () => {
-  //   expect(getProductById()).toEqual();
-  //});
+  test("ID -1 возвращает null", () => {
+    expect(getProductById(products, -1)).toEqual(null);
+  });
+  test("строковый ID '1' возвращает null", () => {
+    expect(getProductById(products, "1")).toEqual(null);
+  });
+  test("ID undefined возвращает null", () => {
+    expect(getProductById(products, undefined)).toEqual(null);
+  });
+  test("ID NaN возвращает null", () => {
+    expect(getProductById(products, NaN)).toEqual(null);
+  });
 });
