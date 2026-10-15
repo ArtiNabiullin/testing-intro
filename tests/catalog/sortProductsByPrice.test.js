@@ -20,19 +20,34 @@ describe("sortProductsByPrice", () => {
   test("все товары c 'desc' сортируются как [1, 2, 4, 5, 6, 3]", () => {
     expect(getIds(products, "desc")).toEqual([1, 2, 4, 5, 6, 3]);
   });
-  // test("товары [3, 1, 4] c 'desc' сортируются как [1, 4, 3]", () => {
-  //   expect(getIds()).toEqual();
-  // });
-  // test("товары [5, 2, 6] c 'desc' сортируются как [2, 5, 6]", () => {
-  //   expect(getIds()).toEqual();
-  // });
-  // test("'asc' не меняет исходный массив [1, 3, 4]", () => {
-  //   expect(getIds()).toEqual();
-  // });
-  // test("'desc' не меняет исходный массив [1, 3, 4]", () => {
-  //   expect(getIds()).toEqual();
-  // });
-  // test("направление по умолчанию не меняет исходный массив всех товаров", () => {
-  //   expect(getIds()).toEqual();
-  // });
+  test("товары [3, 1, 4] c 'desc' сортируются как [1, 4, 3]", () => {
+    const input = uniqueArray([3, 1, 4]);
+    expect(getIds(input, "desc")).toEqual([1, 4, 3]);
+  });
+  test("товары [5, 2, 6] c 'desc' сортируются как [2, 5, 6]", () => {
+    const input = uniqueArray([5, 2, 6]);
+    expect(getIds(input, "desc")).toEqual([2, 5, 6]);
+  });
+  test("'asc' не меняет исходный массив [1, 3, 4]", () => {
+    const input = uniqueArray([1, 3, 4]);
+    expect(
+      sortProductsByPrice(
+        input.map((p) => p.id),
+        "asc",
+      ),
+    ).toEqual([1, 3, 4]);
+  });
+  test("'desc' не меняет исходный массив [1, 3, 4]", () => {
+    const input = uniqueArray([1, 3, 4]);
+    expect(
+      sortProductsByPrice(
+        input.map((p) => p.id),
+        "desc",
+      ),
+    ).toEqual([1, 3, 4]);
+  });
+  test("направление по умолчанию не меняет исходный массив всех товаров", () => {
+    const input = [...products];
+    expect(input.map((p) => p.id)).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
