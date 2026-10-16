@@ -4,7 +4,7 @@ function notImplemented() {
 
 function addToCart(cart, product, quantity) {
   if (quantity <= 0) {
-    throw new Error("Количество товара должно быть больше 0");
+    throw new RangeError("Количество товара должно быть больше 0");
   }
 
   const existingItem = cart.find((item) => item.id === product.id);
@@ -26,18 +26,38 @@ function addToCart(cart, product, quantity) {
 
   return [...cart, { ...product, quantity }];
 }
-function changeQuantity() {
-  return notImplemented();
+
+function changeQuantity(cart, productId, quantity) {
+  if (quantity <= 0) {
+    throw new RangeError("Количество товара должно быть больше 0");
+  }
+
+  const existingItem = cart.find((item) => item.id === productId);
+
+  if (!existingItem) {
+    return cart;
+  }
+
+  if (quantity > existingItem.stock) {
+    throw new RangeError(
+      `Нельзя добавить больше товара, чем есть на складе (в наличии: ${existingItem.stock})`,
+    );
+  }
+
+  return cart.map((item) => {
+    item.id === productId ? { ...item, quantity: quantity } : item;
+  });
 }
+
 function removeFromCart() {
   return notImplemented();
 }
-function calculateCartSubtotal() {
-  return notImplemented();
-}
-function calculateOrderTotal() {
-  return notImplemented();
-}
+// function calculateCartSubtotal() {
+//   return notImplemented();
+// }
+// function calculateOrderTotal() {
+//   return notImplemented();
+// }
 
 const cartApi = {
   addToCart,
