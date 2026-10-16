@@ -59,9 +59,13 @@ function removeFromCart(cart, productId, quantity = 1) {
     })
     .filter((item) => item.quantity > 0);
 }
-function calculateCartSubtotal() {
-  return notImplemented();
+
+function calculateCartSubtotal(cart) {
+  return cart.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
 }
+
 function calculateOrderTotal() {
   return notImplemented();
 }
