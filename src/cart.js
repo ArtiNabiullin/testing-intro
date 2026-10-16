@@ -49,15 +49,22 @@ function changeQuantity(cart, productId, quantity) {
   });
 }
 
-function removeFromCart() {
+function removeFromCart(cart, productId, quantity = 1) {
+  return cart
+    .map((item) => {
+      if (item.id === productId) {
+        return { ...item, quantity: Math.max(0, item.quantity - quantity) };
+      }
+      return item;
+    })
+    .filter((item) => item.quantity > 0);
+}
+function calculateCartSubtotal() {
   return notImplemented();
 }
-// function calculateCartSubtotal() {
-//   return notImplemented();
-// }
-// function calculateOrderTotal() {
-//   return notImplemented();
-// }
+function calculateOrderTotal() {
+  return notImplemented();
+}
 
 const cartApi = {
   addToCart,
