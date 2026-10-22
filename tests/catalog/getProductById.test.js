@@ -15,7 +15,7 @@ describe("getProductById", () => {
     expect(getProductById(products, 0)).toEqual(null);
   });
   test("ID 999 возвращает null", () => {
-    expect(getProductById(products, 0)).toEqual(null);
+    expect(getProductById(products, 999)).toEqual(null);
   });
   test("ID -1 возвращает null", () => {
     expect(getProductById(products, -1)).toEqual(null);

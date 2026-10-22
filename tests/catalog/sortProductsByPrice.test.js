@@ -30,24 +30,17 @@ describe("sortProductsByPrice", () => {
   });
   test("'asc' не меняет исходный массив [1, 3, 4]", () => {
     const input = uniqueArray([1, 3, 4]);
-    expect(
-      sortProductsByPrice(
-        input.map((p) => p.id),
-        "asc",
-      ),
-    ).toEqual([1, 3, 4]);
+    sortProductsByPrice(input, "asc");
+    expect(input.map((p) => p.id)).toEqual([1, 3, 4]);
   });
   test("'desc' не меняет исходный массив [1, 3, 4]", () => {
     const input = uniqueArray([1, 3, 4]);
-    expect(
-      sortProductsByPrice(
-        input.map((p) => p.id),
-        "desc",
-      ),
-    ).toEqual([1, 3, 4]);
+    sortProductsByPrice(input, "desc");
+    expect(input.map((p) => p.id)).toEqual([1, 3, 4]);
   });
   test("направление по умолчанию не меняет исходный массив всех товаров", () => {
     const input = [...products];
+    sortProductsByPrice(input);
     expect(input.map((p) => p.id)).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
